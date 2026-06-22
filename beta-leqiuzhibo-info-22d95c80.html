@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乐球直播 · 赛事漫游指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f2f4f7;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 2rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* 杂志横幅 */
+        .hero {
+            background: linear-gradient(135deg, #e6ecf5 0%, #dbe3ee 100%);
+            border-radius: 28px;
+            padding: 2.8rem 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            border: 1px solid #d6dee9;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #0f172a;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #334155;
+            border-left: 4px solid #8b9bb4;
+            padding-left: 1rem;
+            max-width: 70%;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .hero .sub { max-width: 100%; font-size: 1rem; }
+        }
+
+        /* 卡片通用 */
+        .card {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e2e8f0;
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #1e293b;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card-title span {
+            background: #eef2f6;
+            padding: 0.1rem 0.6rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            color: #475569;
+        }
+
+        .card p {
+            margin-bottom: 0.9rem;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 引用或小标签 */
+        .inset-note {
+            background: #f8fafc;
+            border-left: 3px solid #b9c8da;
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            margin: 1.2rem 0 0.4rem 0;
+            font-size: 0.95rem;
+            color: #2c3e50;
+        }
+
+        /* 两列网格 (用于特点/场景) */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.6rem;
+            margin-top: 0.6rem;
+        }
+
+        @media (max-width: 640px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        .mini-card {
+            background: #f9fafb;
+            border-radius: 18px;
+            padding: 1.2rem 1.4rem;
+            border: 1px solid #e9edf3;
+        }
+
+        .mini-card h3 {
+            font-weight: 500;
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+            color: #0f172a;
+        }
+
+        .mini-card p {
+            font-size: 0.93rem;
+            color: #334155;
+        }
+
+        /* FAQ 摘要 */
+        .faq-item {
+            border-bottom: 1px solid #e9edf3;
+            padding: 1rem 0;
+        }
+
+        .faq-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .faq-a {
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        /* 页尾 */
+        .footer-note {
+            margin-top: 2.2rem;
+            padding: 1.2rem 0;
+            text-align: center;
+            border-top: 1px solid #dce2ec;
+            color: #4b5b6e;
+            font-size: 0.95rem;
+        }
+
+        .footer-note a {
+            color: #1e293b;
+            text-decoration: none;
+            border-bottom: 1px solid #b9c8da;
+            transition: border-color 0.15s;
+        }
+
+        .footer-note a:hover {
+            border-bottom-color: #0f172a;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.8rem;
+            margin: 0.8rem 0 0.2rem 0;
+        }
+
+        .tag-list span {
+            background: #eef2f6;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #334155;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 0.8rem 0 1.2rem 0;
+        }
+
+        a {
+            color: #1e3a5f;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 横幅 -->
+    <div class="hero">
+        <h1>乐球直播</h1>
+        <div class="sub">从一场比赛到另一种观看——日常查询、对照与延伸阅读</div>
+        <div style="margin-top: 1.5rem; font-size: 0.9rem; color: #475569; max-width: 80%;">
+            当看球变成一种习惯，你需要的只是更安静的入口、更清晰的分组。
+        </div>
+    </div>
+
+    <!-- 第一段：日常查询 -->
+    <div class="card">
+        <div class="card-title">
+            📋 从日程到战报 · 日常查询
+            <span>routine</span>
+        </div>
+        <p>
+            很多时候我们打开一个体育页面，并不需要花哨的动画或弹窗。只是想确认一下今晚的欧冠开球时间，或者翻一翻上周联赛的比分。在 <a href="https://beta-leqiuzhibo.com" style="font-weight: 500;">乐球直播</a> 里，赛事列表被整理成清晰的卡片，按联赛、日期和阶段分组，省去反复跳转的麻烦。如果你习惯赛前瞄一眼阵容、赛后看看集锦，这里也把相关资源放在了同一个信息层级里。
+        </p>
+        <div class="inset-note">
+            ｜ 不必记住比赛编号，按时间线滑动就好。页面默认收起已结束场次，可手动展开回顾。
+        </div>
+    </div>
+
+    <!-- 第二段：对照与延伸阅读 -->
+    <div class="card">
+        <div class="card-title">
+            🔍 对照与延伸 · 不止是比分
+            <span>context</span>
+        </div>
+        <p>
+            单看一场比分往往不够。同一轮次里，竞争对手的赛果、净胜球变化、伤病名单更新——这些信息串联起来才有参照价值。专题页里常会附带该赛事的积分走势、近期交锋记录以及相关队伍新闻摘要。你可以在同一视窗内完成「对照 → 判断 → 延伸阅读」的小循环。
+        </p>
+        <div class="grid-2">
+            <div class="mini-card">
+                <h3>📌 积分对照</h3>
+                <p>同小组/同联赛的实时排名，胜平负与净胜球一目了然，适合赛季中后期密集查询。</p>
+            </div>
+            <div class="mini-card">
+                <h3>📎 延伸阅读</h3>
+                <p>每场比赛页面下方附有战报链接、赛后数据图表及教练采访片段，不跳转外部站点即可浏览要点。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第三段：使用场景及FAQ摘要 -->
+    <div class="card">
+        <div class="card-title">
+            🧩 场景与常见问题
+            <span>scenes</span>
+        </div>
+        <p>
+            无论是通勤路上快速刷赛果，还是周末午后打开电视前先看一眼实时比分，页面都尽量保持轻量与直接。没有自动播放的视频流，也没有频繁的推荐推送。你打开的是一个安静的赛事信息台。
+        </p>
+
+        <hr>
+
+        <div class="faq-item">
+            <div class="faq-q">⚡ 赛程更新时间？</div>
+            <div class="faq-a">通常赛前 2 小时放出首发及裁判信息；赛后 10 分钟内同步最终比分及技术统计。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">📁 能否只看特定联赛？</div>
+            <div class="faq-a">可以。顶部导航栏按联赛分区（英超、西甲、意甲、德甲、法甲、欧冠、欧联等），点击即筛选。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">📱 移动端适配如何？</div>
+            <div class="faq-a">页面采用响应式网格，手机竖屏下卡片纵向排列，字体和按钮均维持可读尺寸。不需要横向缩放。</div>
+        </div>
+
+        <div class="tag-list">
+            <span>日常查询</span>
+            <span>比分对照</span>
+            <span>赛事延伸</span>
+            <span>轻量浏览</span>
+        </div>
+    </div>
+
+    <!-- 页尾访问提示 -->
+    <div class="footer-note">
+        <p>
+            如果你也习惯在赛前赛后花几分钟安静地扫一遍赛程与数据，可以打开
+            <a href="https://beta-leqiuzhibo.com">乐球直播</a>
+            ，它或许正好匹配你的浏览节奏。
+        </p>
+        <p style="margin-top: 0.6rem; color: #62748a; font-size: 0.85rem;">
+            无需注册，没有强制弹窗。页面持续更新中。
+        </p>
+    </div>
+
+</div>
+</body>
+</html>
